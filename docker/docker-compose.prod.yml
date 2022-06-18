@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+
+  4me-worker-app:
+    image: node:16.14.0
+    container_name: 4me-worker-app
+    restart: unless-stopped
+    volumes:
+      - ../:/var/app
+    depends_on:
+      - "4me-redis"
+    command: bash -c "cd /var/app && npm i --prod && npm run start:prod"
+
+  4me-redis:
+    image: 'bitnami/redis:latest'
+    container_name: redis
+    expose:
+      - 6379
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    mem_limit: 256m
