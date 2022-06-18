@@ -11,8 +11,6 @@ try {
 } catch (e: any) {
   if (e instanceof PreCheckError) {
     logger.error(e.message);
-    logger.warn("Exiting program.");
-    process.exit(1);
   }
 }
 
@@ -26,8 +24,6 @@ healthCheckQueue.on("error", (error) => {
     logger.error(
       `Unable to connect to the REDIS server at => redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
     );
-    logger.warn("Exiting program.");
-    process.exit(1);
   }
 });
 

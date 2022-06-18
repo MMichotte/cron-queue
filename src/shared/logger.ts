@@ -1,12 +1,11 @@
 import { createLogger, format, transports } from "winston";
 
 const logLevels = {
-  fatal: 0,
-  error: 1,
-  warn: 2,
-  info: 3,
-  debug: 4,
-  trace: 5,
+  error: 0,
+  warn: 1,
+  info: 2,
+  debug: 3,
+  trace: 4,
 };
 
 const logger = createLogger({
