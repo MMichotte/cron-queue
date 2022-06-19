@@ -5,7 +5,7 @@ services:
   4me-worker-app:
     image: node:16.14.0
     container_name: 4me-worker-app
-    restart: unless-stopped
+    #restart: unless-stopped
     volumes:
       - ../:/var/app
     depends_on:
@@ -15,6 +15,7 @@ services:
   4me-redis:
     image: 'bitnami/redis:latest'
     container_name: redis
+    restart: unless-stopped
     expose:
       - 6379
     environment:
