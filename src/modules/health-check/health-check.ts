@@ -1,6 +1,6 @@
 import axios from "axios";
-import { logger } from "../../shared/logger";
-import { delayedJobsQueue } from "../../shared/queues";
+import { logger } from "../../utils/logger";
+import { delayedJobsQueue } from "../../utils/queues";
 
 let count: number = 0;
 

@@ -1,10 +1,13 @@
+import path from "path";
 import cron from "node-cron";
 import dotenv from "dotenv";
 dotenv.config();
 
-import { PreCheckError, preCheck } from "./core/pre-check";
-import { logger } from "./shared/logger";
+import { PreCheckError, preCheck } from "./utils/pre-check";
+import { logger } from "./utils/logger";
 import { healthCheck } from "./modules/health-check/health-check";
+import * as csvHandler from "./utils/csv-handler";
+import { Grade } from "./models/grade"
 
 logger.info("Node application started.");
 
@@ -18,7 +21,8 @@ try {
   }
 }
 
-const mainJob = cron.schedule("*/10 * * * * *", () => {
+const mainJob = cron.schedule("*/10 * * * * *", async () => {
   logger.info("Starting main job.");
+  const grades = await csvHandler.csvToObjectArray(path.resolve(__dirname,"../data/grades.csv"), Grade);
   healthCheck();
 });
